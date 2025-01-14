@@ -85,9 +85,9 @@ function libraryFormSubmit(e) {
         display.show('success', 'Your book has been successfully added');
 
         // Store book in localStorage
-        let books = JSON.parse(localStorage.getItem('books')) || [];
-        books.push(book);
-        localStorage.setItem('books', JSON.stringify(books));
+        let books = JSON.parse(localStorage.getItem('books')) || []; // Get existing books or an empty array
+        books.push(book);  // Add new book to array
+        localStorage.setItem('books', JSON.stringify(books));  // Store updated array in localStorage
     } else {
         // Show error to the user
         display.show('danger', 'Sorry you cannot add this book');
@@ -104,8 +104,8 @@ function deleteBook(bookName) {
 
     // Remove book from localStorage
     let books = JSON.parse(localStorage.getItem('books')) || [];
-    books = books.filter(book => book.name !== bookName);
-    localStorage.setItem('books', JSON.stringify(books));
+    books = books.filter(book => book.name !== bookName);  // Filter out the deleted book
+    localStorage.setItem('books', JSON.stringify(books));  // Update localStorage
 }
 
 // Load books on page load (from localStorage)
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let books = JSON.parse(localStorage.getItem('books')) || [];
     let display = new Display();
     books.forEach(book => {
-        display.add(book);
+        display.add(book);  // Add each book from localStorage to the UI
     });
 });
 
