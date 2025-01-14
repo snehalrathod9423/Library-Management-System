@@ -29,6 +29,8 @@
                 <input class="form-control mr-sm-2" id="searchTxt" type="search" placeholder="Search Books" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchBtn">Search</button>
             </form>
+            <!-- Logout Button -->
+            <a href="logout.html" class="btn btn-danger ml-2">Logout</a>
         </div>
     </nav>
 
@@ -145,7 +147,7 @@
             let type = document.querySelector('input[name="type"]:checked').value;
 
             let newRow = document.createElement('tr');
-            newRow.innerHTML = `
+            newRow.innerHTML = ` 
                 <td>${bookName}</td>
                 <td>${author}</td>
                 <td>${type}</td>
@@ -182,4 +184,3 @@
 </body>
 
 </html>
-
