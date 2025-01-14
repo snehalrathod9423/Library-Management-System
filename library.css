@@ -5,6 +5,9 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the page occupies full height */
 }
 
 /* Header styling */
@@ -37,6 +40,7 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Ensures the container takes up remaining space */
 }
 
 /* Form styling */
@@ -170,4 +174,14 @@ table tr:hover {
 
 .card-footer .btn:hover {
     background-color: #16a085;
+}
+
+/* Contact Us section at the bottom */
+footer {
+    background-color: #1abc9c;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; /* Pushes it to the bottom */
+    width: 100%;
 }
