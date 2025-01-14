@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Login successful
                 alert('Login successful!');
                 // Redirect to the library dashboard
-                window.location.href = 'library-dashboard.html'; // Replace with the actual dashboard URL
+                window.location.href = 'library.html'; // Replace with the actual dashboard URL
             } else {
                 // Login failed
                 alert('Invalid email or password. Please try again.');
