@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="library.css">
     <title>Welcome to Library</title>
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#" id="homeLink">Book Library</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -22,63 +24,83 @@
                     <a class="nav-link" href="#" id="homeLink">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-           <!-- Search Bar -->
-<form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" id="searchTxt" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchBtn">Search</button>
-</form>
-
+            <!-- Search Bar -->
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="searchTxt" type="search" placeholder="Search Books" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchBtn">Search</button>
+            </form>
         </div>
     </nav>
 
     <div id="message"></div>
 
+    <!-- Container for Library Management -->
     <div class="container my-3">
         <h1>Manage Library</h1>
         <hr>
-        <form id="libraryForm">
-            <div class="form-group row">
-                <label for="bookName" class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="bookName" placeholder="Book Name">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="Author" class="col-sm-2 col-form-label">Author</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="author" placeholder="Author">
-                </div>
-            </div>
-            <fieldset class="form-group">
-                <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">Type</legend>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="fiction" value="fiction" checked>
-                            <label class="form-check-label" for="fiction">Fiction</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="programming" value="programming">
-                            <label class="form-check-label" for="programming">Computer Programming</label>
-                        </div>
-                        <div class="form-check disabled">
-                            <input class="form-check-input" type="radio" name="type" id="cooking" value="cooking">
-                            <label class="form-check-label" for="cooking">Cooking</label>
-                        </div>
+        <!-- Button to Open Modal for Adding Book -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookModal">
+            Add Book
+        </button>
+
+        <!-- Modal for Adding Book -->
+        <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookModalLabel">Add New Book</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="libraryForm">
+                            <div class="form-group">
+                                <label for="bookName">Book Name</label>
+                                <input type="text" class="form-control" id="bookName" placeholder="Enter Book Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input type="text" class="form-control" id="author" placeholder="Enter Author Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="bookType">Type</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="type" id="fiction" value="fiction" checked>
+                                    <label class="form-check-label" for="fiction">
+                                        <i class="fas fa-book"></i> Fiction
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="type" id="programming" value="programming">
+                                    <label class="form-check-label" for="programming">
+                                        <i class="fas fa-laptop-code"></i> Computer Programming
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="type" id="science" value="science">
+                                    <label class="form-check-label" for="science">
+                                        <i class="fas fa-flask"></i> Science
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="type" id="history" value="history">
+                                    <label class="form-check-label" for="history">
+                                        <i class="fas fa-landmark"></i> History
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Book</button>
+                        </form>
                     </div>
                 </div>
-            </fieldset>
-
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Add Book</button>
-                </div>
             </div>
-        </form>
+        </div>
 
+        <!-- Table to Display Books -->
         <div id="table">
-            <h1>Your books</h1>
-            <table class="table table-striped">
+            <h1>Your Books</h1>
+            <table id="bookTable" class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
@@ -86,15 +108,78 @@
                         <th scope="col">Type</th>
                     </tr>
                 </thead>
-                <tbody id='tableBody'></tbody>
+                <tbody id="tableBody">
+                    <!-- Table rows will be inserted dynamically -->
+                </tbody>
             </table>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>Contact us: <a href="mailto:info@library.com" class="text-white">info@library.com</a></p>
+        <div>
+            <a href="#" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="library.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script>
+        // Initialize DataTable
+        $(document).ready(function () {
+            $('#bookTable').DataTable();
+        });
+
+        // Handle Add Book Form Submission
+        document.getElementById('libraryForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let bookName = document.getElementById('bookName').value;
+            let author = document.getElementById('author').value;
+            let type = document.querySelector('input[name="type"]:checked').value;
+
+            let newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${bookName}</td>
+                <td>${author}</td>
+                <td>${type}</td>
+            `;
+            document.getElementById('tableBody').appendChild(newRow);
+
+            // Show Success Message
+            document.getElementById('message').innerHTML = `
+                <div class="alert alert-success" role="alert">
+                    Book "${bookName}" has been successfully added!
+                </div>
+            `;
+
+            // Reset the form after submission
+            $('#bookModal').modal('hide');
+            document.getElementById('libraryForm').reset();
+        });
+
+        // Handle Search Button
+        document.getElementById('searchBtn').addEventListener('click', function () {
+            let query = document.getElementById('searchTxt').value.toLowerCase();
+            let books = document.querySelectorAll('#tableBody tr');
+            books.forEach(book => {
+                let name = book.cells[0].textContent.toLowerCase();
+                let author = book.cells[1].textContent.toLowerCase();
+                if (name.includes(query) || author.includes(query)) {
+                    book.style.display = 'table-row';
+                } else {
+                    book.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
+
